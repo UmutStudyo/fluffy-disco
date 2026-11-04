@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Forum — Avalanche</title>
+  <meta name="description" content="Avalanche Forum: konu aç, yorum yap, kategorilerde ara ve toplulukla tartış." />
+  <meta name="theme-color" content="#0b0b0c" />
+  <link rel="canonical" href="https://www.avlclan.com.tr/forum.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/forum.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='26' fill='%23ffffff'/%3E%3Ctext x='50' y='71' font-family='Inter,Arial' font-size='58' font-weight='700' text-anchor='middle' fill='%230b0b0c'%3EA%3C/text%3E%3C/svg%3E" />
+  <script>
+    (function () {
+      try {
+        if (window.localStorage.getItem("avl_theme") === "light") {
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+        var l = window.localStorage.getItem("avl_lang");
+        if (l === "en") document.documentElement.setAttribute("lang", "en");
+      } catch (err) {}
+    })();
+  </script>
+</head>
+<body data-title-tr="Forum — Avalanche" data-title-en="Forum — Avalanche">
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" id="siteHeader"></header>
+
+  <main id="main">
+    <section class="page-head">
+      <span class="eyebrow reveal"><i aria-hidden="true"></i>Topluluk</span>
+      <h1 class="reveal">Forum</h1>
+      <p class="reveal">
+        Konu aç, soru sor, deneyimini paylaş. Kategorilerden birini seçerek başla.
+      </p>
+    </section>
+
+    <section class="section">
+      <!-- Görünümler -->
+      <div id="forumListe" class="forum-wrap">
+
+        <!-- Araç çubuğu -->
+        <div class="forum-bar">
+          <div class="forum-search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.6" /><path d="M16 16l4.4 4.4" /></svg>
+            <input class="input" id="forumSearch" type="search" placeholder="Konu veya kategori ara…" autocomplete="off" />
+          </div>
+          <button class="btn btn--primary forum-newbtn" type="button" id="forumNewBtn">Yeni Konu</button>
+        </div>
+
+        <!-- Kategoriler -->
+        <div class="forum-cats" id="forumCats" role="tablist" aria-label="Forum kategorileri"></div>
+
+        <!-- Konu listesi -->
+        <div class="forum-list" id="forumTopics" aria-live="polite"></div>
+      </div>
+
+      <!-- Konu görünümü -->
+      <div id="forumKonu" class="forum-wrap" hidden>
+        <button class="forum-back" type="button" id="forumBack">← Forum listesine dön</button>
+        <div id="forumTopicView"></div>
+      </div>
+
+      <!-- Yeni konu görünümü -->
+      <div id="forumYeni" class="forum-wrap" hidden>
+        <button class="forum-back" type="button" id="forumNewBack">← Forum listesine dön</button>
+        <div class="forum-editor">
+          <h2>Yeni Konu</h2>
+          <form id="forumNewForm" novalidate>
+            <label class="field">
+              <span class="field__label">Kategori</span>
+              <select class="select" id="fKategori"></select>
+            </label>
+            <label class="field">
+              <span class="field__label">Başlık</span>
+              <input class="input" id="fBaslik" type="text" maxlength="110" placeholder="Konunun başlığı" />
+              <span class="field__err" id="efBaslik"></span>
+            </label>
+            <label class="field">
+              <span class="field__label">İçerik</span>
+              <textarea class="input forum-editor__body" id="fIcerik" rows="9" maxlength="8000" placeholder="Konunu buraya yaz…"></textarea>
+              <span class="field__err" id="efIcerik"></span>
+            </label>
+            <div class="forum-editor__acts">
+              <button class="btn btn--primary" type="submit" id="fSubmit">Konuyu Aç</button>
+              <p class="form-status" id="fStatus" role="status" aria-live="polite"></p>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Profil görünümü -->
+      <div id="forumProfil" class="forum-wrap" hidden>
+        <button class="forum-back" type="button" id="forumProfBack">← Forum listesine dön</button>
+        <div id="forumProfilView"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <a class="brand" href="index.html" aria-label="Avalanche ana sayfa">
+          <span class="brand__mark" aria-hidden="true">A</span>
+          <span class="brand__name">Avalanche</span>
+        </a>
+        <p>Avalanche, CS 1.6 oyuncularını bir araya getiren bir oyun klanıdır. Oyun sunucusu ve TeamSpeak3 topluluğu ile aktif bir ortam sunar.</p>
+      </div>
+      <div class="footer__cols">
+        <div class="footer__col">
+          <h4>Sayfalar</h4>
+          <a href="index.html">Ana Sayfa</a>
+          <a href="fiyatlar.html">Fiyatlar</a>
+          <a href="yonetim.html">Yönetim</a>
+          <a href="hakkimizda.html">Hakkımızda</a>
+          <a href="forum.html">Forum</a>
+          <a href="iletisim.html">İletişim</a>
+        </div>
+        <div class="footer__col">
+          <h4>Sunucu</h4>
+          <a href="index.html#server">CS 1.6 — 95.173.173.118</a>
+          <a href="index.html#ts3">TeamSpeak3 — Avalanche</a>
+          <a href="fiyatlar.html">Yetki Paketleri</a>
+        </div>
+        <div class="footer__col">
+          <h4>Topluluk</h4>
+          <a href="https://www.instagram.com/avlclancomtr" target="_blank" rel="noopener noreferrer">Instagram — @avlclancomtr</a>
+          <a href="https://t.me/umutzio" target="_blank" rel="noopener noreferrer">Telegram — @umutzio</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__legal">
+      <a href="hakkimizda.html">Biz Kimiz?</a>
+      <span class="dot-sep">·</span>
+      <a href="kullanici-sozlesmesi.html">Kullanıcı Sözleşmesi</a>
+      <span class="dot-sep">·</span>
+      <a href="urun-sozlesmesi.html">Ürün Sözleşmesi</a>
+      <span class="dot-sep">·</span>
+      <a href="gizlilik-politikasi.html">Gizlilik Politikası</a>
+      <span class="dot-sep">·</span>
+      <a href="kvkk-aydinlatma-metni.html">KVKK Aydınlatma Metni</a>
+      <span class="dot-sep">·</span>
+      <a href="https://www.ixbir.net" target="_blank" rel="noopener noreferrer">www.ixbir.net</a>
+      <span class="dot-sep">·</span>
+      <a href="sss.html">Sıkça Sorulan Sorular</a>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2027 Avalanche. Tüm hakları saklıdır.</span>
+      <span>www.avlclan.com.tr<span class="dot-sep">·</span>CS 1.6 Klanı</span>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/site-chrome.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/auth-lib.js"></script>
+  <script src="js/forum.js"></script>
+</body>
+</html>

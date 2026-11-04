@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Giriş Yap — Avalanche</title>
+  <meta name="description" content="Avalanche üye girişi: kullanıcı adı veya e-posta ve şifre ile hesabına eriş." />
+  <meta name="theme-color" content="#0b0b0c" />
+  <link rel="canonical" href="https://www.avlclan.com.tr/giris.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/panel.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='26' fill='%23ffffff'/%3E%3Ctext x='50' y='71' font-family='Inter,Arial' font-size='58' font-weight='700' text-anchor='middle' fill='%230b0b0c'%3EA%3C/text%3E%3C/svg%3E" />
+  <script>
+    (function () {
+      try {
+        if (window.localStorage.getItem("avl_theme") === "light") {
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+        if (window.localStorage.getItem("avl_lang") === "en") {
+          document.documentElement.setAttribute("lang", "en");
+        }
+      } catch (err) {}
+    })();
+  </script>
+</head>
+<body data-title-tr="Giriş Yap — Avalanche" data-title-en="Sign In — Avalanche">
+  <a class="skip-link" href="#main" data-i18n="skip">İçeriğe geç</a>
+
+  <header class="site-header" id="siteHeader"></header>
+
+  <main id="main">
+    <div class="auth-page">
+      <div class="auth-card">
+        <div class="auth-head">
+          <div class="auth-head__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.6" /><path d="M8 10.5V7.6a4 4 0 0 1 8 0v2.9" /><path d="M12 14.6v2.2" /></svg>
+          </div>
+          <h1 data-i18n="auth.loginTitle">Giriş Yap</h1>
+          <p data-i18n="auth.loginSub">Avalanche hesabınla panele eriş.</p>
+        </div>
+
+        <form id="loginForm" novalidate>
+          <div class="form-grid">
+            <div class="form-row">
+              <label class="field">
+                <span class="field__label" data-i18n="auth.identity">Kullanıcı Adı veya E-posta</span>
+                <input class="input" id="lKimlik" name="kimlik" type="text" autocomplete="username" placeholder="ornek_kullanici" />
+                <span class="field__err" id="eKimlik"></span>
+              </label>
+
+              <label class="field">
+                <span class="field__label" data-i18n="auth.password">Şifre</span>
+                <input class="input" id="lSifre" name="sifre" type="password" autocomplete="current-password" placeholder="••••••" maxlength="16" />
+                <span class="field__err" id="eSifre"></span>
+              </label>
+            </div>
+
+            <div class="field">
+              <span class="field__label" data-i18n="auth.captcha">Güvenlik Doğrulaması</span>
+              <div class="captcha-row">
+                <div class="captcha-img" id="captchaImg" data-i18n-aria="auth.captcha" aria-label="Güvenlik kodu">----</div>
+                <button class="captcha-refresh" type="button" id="captchaNew" data-i18n-aria="auth.captchaNew" aria-label="Yeni kod oluştur">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-.6 3M20 5v6h-6" /></svg>
+                </button>
+                <input class="input" id="lCaptcha" type="text" data-i18n-ph="auth.captchaPh" placeholder="Kodu yazın" maxlength="4" autocomplete="off" spellcheck="false" style="text-transform:uppercase;letter-spacing:.18em;font-weight:600" />
+              </div>
+              <span class="field__err" id="eCaptcha"></span>
+            </div>
+
+            <button class="btn btn--primary btn--block" type="submit" id="loginSubmit" data-i18n="auth.login">Giriş Yap</button>
+            <p class="form-status" id="loginStatus" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+
+        <p class="auth-alt">
+          <span data-i18n="auth.noAccount">Hesabın yok mu?</span>
+          <a href="kayit.html" data-i18n="auth.signupLink">Hesap Aç</a>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/site-chrome.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/auth-lib.js"></script>
+  <script src="js/giris.js"></script>
+</body>
+</html>

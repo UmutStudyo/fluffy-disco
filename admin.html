@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Yönetici Paneli — Avalanche</title>
+  <meta name="description" content="Avalanche yönetici paneli: üye, forum, destek ve bildirim yönetimi." />
+  <meta name="theme-color" content="#0b0b0c" />
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/panel.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='26' fill='%23ffffff'/%3E%3Ctext x='50' y='71' font-family='Inter,Arial' font-size='58' font-weight='700' text-anchor='middle' fill='%230b0b0c'%3EA%3C/text%3E%3C/svg%3E" />
+  <script>
+    (function () {
+      try {
+        if (window.localStorage.getItem("avl_theme") === "light") {
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+        if (window.localStorage.getItem("avl_lang") === "en") {
+          document.documentElement.setAttribute("lang", "en");
+        }
+      } catch (err) {}
+    })();
+  </script>
+</head>
+<body data-title-tr="Yönetici Paneli — Avalanche" data-title-en="Admin Panel — Avalanche">
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" id="siteHeader"></header>
+
+  <main id="main">
+    <div class="dash is-gated" id="dash">
+      <div class="dash__scrim" id="dashScrim" aria-hidden="true"></div>
+
+      <!-- Sol: sabit sidebar -->
+      <aside class="dash__side" id="dashSide" aria-label="Yönetici menüsü">
+        <div class="dash__user">
+          <div class="dash__avatar" aria-hidden="true" style="background:linear-gradient(160deg,#f2b544,#f2635b);color:#1a1208">Y</div>
+          <div class="dash__uinfo">
+            <span class="dash__uname">Yönetim</span>
+            <span class="dash__handle">Avalanche</span>
+          </div>
+        </div>
+
+        <nav class="dash__nav" aria-label="Yönetici bölümleri">
+          <button class="dash__link is-active" type="button" data-panel="genel">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg>
+            <span>Genel Bakış</span>
+          </button>
+
+          <button class="dash__link" type="button" data-panel="uyeler">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8.4" r="3.4"/><path d="M2.8 19.6c0-3.4 2.8-5.6 6.2-5.6s6.2 2.2 6.2 5.6"/><path d="M16.4 5.6a3.2 3.2 0 0 1 0 5.6M17.4 14.4c2.2.5 3.8 2.2 3.8 5.2"/></svg>
+            <span>Kullanıcılar</span>
+            <span class="dash__badge" id="userCount"></span>
+          </button>
+
+          <button class="dash__link" type="button" data-panel="forum">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12.5a7.5 7.5 0 0 1-7.5 7.5H5l-2 2 .5-4.6A7.5 7.5 0 0 1 12.5 5 7.5 7.5 0 0 1 20 12.5z"/></svg>
+            <span>Forum</span>
+          </button>
+
+          <button class="dash__link" type="button" data-panel="destek">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2l2.7 5.5 6 .9-4.4 4.2 1 6-5.3-2.8-5.3 2.8 1-6L3.3 9.6l6-.9z"/></svg>
+            <span>Destek</span>
+            <span class="dash__badge" id="ticketCount"></span>
+          </button>
+
+          <button class="dash__link" type="button" data-panel="bildirim">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8.6a6 6 0 1 0-12 0c0 5-2 6.4-2 6.4h16s-2-1.4-2-6.4z"/><path d="M10.3 19a2 2 0 0 0 3.4 0"/></svg>
+            <span>Bildirimler</span>
+          </button>
+
+          <button class="dash__link" type="button" data-panel="magaza">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h16l-1 12H5z"/><path d="M8.6 8V6.4a3.4 3.4 0 0 1 6.8 0V8"/></svg>
+            <span>Supreme / Mağaza</span>
+          </button>
+
+          <button class="dash__link" type="button" data-panel="kayitlar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5h16M4 12h16M4 17.5h10"/></svg>
+            <span>İşlem Kayıtları</span>
+          </button>
+
+          <div class="dash__logout">
+            <button class="dash__link" type="button" id="logoutBtn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6.5V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2v-1.5"/><path d="M10.5 12h10M17.5 8.6l3.4 3.4-3.4 3.4"/></svg>
+              <span>Çıkış Yap</span>
+            </button>
+          </div>
+        </nav>
+      </aside>
+
+      <div class="dash__main">
+        <div class="dash__mobilebar">
+          <button class="dash__burger" type="button" id="dashBurger" aria-label="Menüyü aç" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+          <strong id="mobileBarTitle">Genel Bakış</strong>
+        </div>
+
+        <!-- Yönetici girişi -->
+        <section class="dash-panel is-active" id="p-giris" aria-labelledby="h-giris">
+          <div class="admin-login">
+            <div class="auth-card admin-login__card">
+              <div class="auth-head">
+                <div class="auth-head__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.6"/><path d="M8 10.5V7.6a4 4 0 0 1 8 0v2.9"/><path d="M12 14.6v2.2"/></svg>
+                </div>
+                <h1 id="h-giris">Yönetici paneline giriş</h1>
+                <p>Bu alan yalnızca yetkili yönetim içindir.</p>
+              </div>
+
+              <form id="adminForm" novalidate>
+                <div class="form-grid">
+                  <label class="field">
+                    <span class="field__label">Kullanıcı Adı veya E-posta</span>
+                    <input class="input" id="aKimlik" type="text" autocomplete="username" placeholder="admin" />
+                    <span class="field__err" id="eAKimlik"></span>
+                  </label>
+
+                  <label class="field">
+                    <span class="field__label">Şifre</span>
+                    <input class="input" id="aSifre" type="password" autocomplete="current-password" placeholder="••••••" />
+                    <span class="field__err" id="eASifre"></span>
+                  </label>
+
+                  <div class="field">
+                    <span class="field__label">Güvenlik Doğrulaması</span>
+                    <div class="captcha-row">
+                      <div class="captcha-img" id="aCatchaImg" aria-label="Güvenlik kodu">----</div>
+                      <button class="captcha-refresh" type="button" id="aCaptchaNew" aria-label="Yeni kod oluştur">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-.6 3M20 5v6h-6" /></svg>
+                      </button>
+                      <input class="input" id="aCaptcha" type="text" placeholder="Kodu yazın" maxlength="4" autocomplete="off" spellcheck="false" style="text-transform:uppercase;letter-spacing:.18em;font-weight:600" />
+                    </div>
+                    <span class="field__err" id="eACaptcha"></span>
+                  </div>
+
+                  <button class="btn btn--primary btn--block" type="submit" id="aLoginSubmit">Giriş Yap</button>
+                  <p class="form-status" id="aLoginStatus" role="status" aria-live="polite"></p>
+                </div>
+              </form>
+
+              <p class="auth-alt">
+                <a href="giris.html">Üye girişine dön</a>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Genel Bakış -->
+        <section class="dash-panel" id="p-genel" aria-labelledby="h-genel">
+          <div class="panel-head">
+            <h2 id="h-genel">Genel Bakış</h2>
+            <p>Topluluk ve sistem durumu.</p>
+          </div>
+
+          <div class="stat-grid" id="ovStats" style="margin-bottom:16px"></div>
+
+          <div class="pcard">
+            <h3 class="pcard__title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5h16M4 12h16M4 17.5h10"/></svg>
+              Son 100 Yönetim Hareketi
+            </h3>
+            <div class="moves" id="ovLog">
+              <div class="empty"><strong>Kayıt yok</strong>Yönetim işlemleri burada listelenir.</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Kullanıcılar -->
+        <section class="dash-panel" id="p-uyeler" aria-labelledby="h-uyeler">
+          <div class="panel-head">
+            <h2 id="h-uyeler">Kullanıcı Yönetimi</h2>
+            <p>Kişisel alanlar şifreli olduğu için yalnızca kullanıcı adı, rol ve durum görünür.</p>
+          </div>
+          <div class="pcard">
+            <div class="kv__row" style="border-top:0;padding-top:0;padding-bottom:12px">
+              <input class="input" id="userSearch" type="search" placeholder="Kullanıcı adı ara…" style="max-width:280px" />
+            </div>
+            <div id="userTable"></div>
+          </div>
+        </section>
+
+        <!-- Forum -->
+        <section class="dash-panel" id="p-forum" aria-labelledby="h-forum">
+          <div class="panel-head">
+            <h2 id="h-forum">Forum Yönetimi</h2>
+            <p>Konu sabitle, kilitle, gizle veya sil.</p>
+          </div>
+          <div id="adminForum"></div>
+        </section>
+
+        <!-- Destek -->
+        <section class="dash-panel" id="p-destek" aria-labelledby="h-destek">
+          <div class="panel-head">
+            <h2 id="h-destek">Destek Yönetimi</h2>
+            <p>Bekleyen talepleri yanıtla, durumu güncelle.</p>
+          </div>
+          <div id="adminTickets"></div>
+        </section>
+
+        <!-- Bildirimler -->
+        <section class="dash-panel" id="p-bildirim" aria-labelledby="h-bildirim">
+          <div class="panel-head">
+            <h2 id="h-bildirim">Bildirim Yönetimi</h2>
+            <p>Tüm üyelere duyuru gönder veya belirli bir üyeye bildirim ilet.</p>
+          </div>
+
+          <div class="pcard">
+            <h3 class="pcard__title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8.6a6 6 0 1 0-12 0c0 5-2 6.4-2 6.4h16s-2-1.4-2-6.4z"/></svg>
+              Duyuru Gönder
+            </h3>
+            <form id="announceForm" class="form-grid" novalidate>
+              <label class="field">
+                <span class="field__label">Hedef</span>
+                <select class="select" id="anTarget">
+                  <option value="all">Tüm üyeler</option>
+                </select>
+              </label>
+              <label class="field">
+                <span class="field__label">Mesaj</span>
+                <textarea class="input" id="anText" rows="4" maxlength="400" placeholder="Duyuru metni…"></textarea>
+              </label>
+              <div class="forum-editor__acts">
+                <button class="btn btn--primary" type="submit" id="anSend">Gönder</button>
+                <p class="form-status" id="anStatus" role="status" aria-live="polite"></p>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- Mağaza / Supreme -->
+        <section class="dash-panel" id="p-magaza" aria-labelledby="h-magaza">
+          <div class="panel-head">
+            <h2 id="h-magaza">Supreme / Mağaza</h2>
+            <p>Supreme paketlerinin stok ve kredi fiyatları.</p>
+          </div>
+          <div class="pcard"><div id="adminShop"></div></div>
+        </section>
+
+        <!-- İşlem Kayıtları -->
+        <section class="dash-panel" id="p-kayitlar" aria-labelledby="h-kayitlar">
+          <div class="panel-head">
+            <h2 id="h-kayitlar">Güvenlik ve İşlem Kayıtları</h2>
+            <p>Yönetici giriş geçmişi ve sistem işlem kayıtları.</p>
+          </div>
+          <div class="pcard">
+            <h3 class="pcard__title">Giriş Geçmişi</h3>
+            <div class="moves" id="loginLog"></div>
+          </div>
+          <div class="pcard">
+            <h3 class="pcard__title">İşlem Kayıtları</h3>
+            <div class="moves" id="actionLog"></div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <div class="confirm" id="logoutConfirm" aria-hidden="true">
+    <div class="confirm__ov" data-confirm-close></div>
+    <div class="confirm__box" role="dialog" aria-modal="true" aria-labelledby="logoutTitle">
+      <div class="confirm__ico" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6.5V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2v-1.5"/><path d="M10.5 12h10M17.5 8.6l3.4 3.4-3.4 3.4"/></svg>
+      </div>
+      <h3 id="logoutTitle">Çıkış yapmak istediğine emin misin?</h3>
+      <p>Yönetici oturumun kapatılacak.</p>
+      <div class="confirm__acts">
+        <button class="btn btn--ghost" type="button" data-confirm-close>Vazgeç</button>
+        <button class="btn btn--danger" type="button" id="logoutYes">Çıkış Yap</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/site-chrome.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/auth-lib.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

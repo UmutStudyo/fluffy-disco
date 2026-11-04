@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hesap Aç — Avalanche</title>
+  <meta name="description" content="Avalanche üyeliği oluştur: iki adımda kayıt, güvenli şifreleme ve üye paneli erişimi." />
+  <meta name="theme-color" content="#0b0b0c" />
+  <link rel="canonical" href="https://www.avlclan.com.tr/kayit.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/panel.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='26' fill='%23ffffff'/%3E%3Ctext x='50' y='71' font-family='Inter,Arial' font-size='58' font-weight='700' text-anchor='middle' fill='%230b0b0c'%3EA%3C/text%3E%3C/svg%3E" />
+  <script>
+    (function () {
+      try {
+        if (window.localStorage.getItem("avl_theme") === "light") {
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+        if (window.localStorage.getItem("avl_lang") === "en") {
+          document.documentElement.setAttribute("lang", "en");
+        }
+      } catch (err) {}
+    })();
+  </script>
+</head>
+<body data-title-tr="Hesap Aç — Avalanche" data-title-en="Create Account — Avalanche">
+  <a class="skip-link" href="#main" data-i18n="skip">İçeriğe geç</a>
+
+  <header class="site-header" id="siteHeader"></header>
+
+  <main id="main">
+    <div class="auth-page">
+      <div class="auth-card">
+        <div class="auth-head">
+          <div class="auth-head__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.4" r="3.6" /><path d="M4.8 20.2c0-3.7 3.2-6 7.2-6s7.2 2.3 7.2 6" /></svg>
+          </div>
+          <h1 data-i18n="auth.signup.title">Hesap Aç</h1>
+          <p data-i18n="auth.signup.sub">Avalanche topluluğuna katıl. İki adımda tamamlanır.</p>
+        </div>
+
+        <div class="steps" aria-hidden="true">
+          <div class="steps__item is-current" id="stepInd1">
+            <span class="steps__num">1</span><span data-i18n="auth.step1">Kişisel</span>
+          </div>
+          <span class="steps__line"></span>
+          <div class="steps__item" id="stepInd2">
+            <span class="steps__num">2</span><span data-i18n="auth.step2">Hesap</span>
+          </div>
+        </div>
+
+        <form id="regForm" novalidate>
+          <!-- 1 / 2 -->
+          <div class="form-grid" id="step1">
+            <div class="form-row">
+              <label class="field">
+                <span class="field__label" data-i18n="auth.first">Ad</span>
+                <input class="input" id="rAd" name="ad" type="text" autocomplete="given-name" />
+                <span class="field__err" id="eAd"></span>
+              </label>
+              <label class="field">
+                <span class="field__label" data-i18n="auth.last">Soyad</span>
+                <input class="input" id="rSoyad" name="soyad" type="text" autocomplete="family-name" />
+                <span class="field__err" id="eSoyad"></span>
+              </label>
+            </div>
+
+            <div class="form-row">
+              <label class="field">
+                <span class="field__label" data-i18n="auth.gender">Cinsiyet</span>
+                <select class="select" id="rCinsiyet" name="cinsiyet">
+                  <option value="" data-i18n="auth.select">Seçiniz</option>
+                  <option value="Erkek" data-i18n="auth.male">Erkek</option>
+                  <option value="Kadın" data-i18n="auth.female">Kadın</option>
+                  <option value="Belirtmek istemiyorum" data-i18n="auth.nosay">Belirtmek istemiyorum</option>
+                </select>
+                <span class="field__err" id="eCinsiyet"></span>
+              </label>
+
+              <label class="field">
+                <span class="field__label" data-i18n="auth.birth">Doğum Tarihi</span>
+                <input class="input" id="rDogum" name="dogum" type="date" autocomplete="bday" />
+                <span class="field__err" id="eDogum"></span>
+              </label>
+            </div>
+            <p class="field__hint" data-i18n="auth.birthHint">En az 10 yaşında olmalısınız.</p>
+
+            <button class="btn btn--primary btn--block" type="button" id="toStep2" data-i18n="auth.continue">Devam Et</button>
+            <p class="form-status" id="s1Status" role="status" aria-live="polite"></p>
+          </div>
+
+          <!-- 2 / 2 -->
+          <div class="form-grid" id="step2" hidden>
+            <div class="form-row">
+              <label class="field">
+                <span class="field__label" data-i18n="auth.username">Kullanıcı Adı</span>
+                <input class="input" id="rKadi" name="kadi" type="text" autocomplete="username" maxlength="14" />
+                <span class="field__err" id="eKadi"></span>
+              </label>
+              <label class="field">
+                <span class="field__label" data-i18n="auth.email">E-posta Adresi</span>
+                <input class="input" id="rEmail" name="email" type="email" autocomplete="email" placeholder="ornek@eposta.com" />
+                <span class="field__err" id="eEmail"></span>
+              </label>
+            </div>
+            <p class="field__hint" data-i18n="auth.usernameHint">4–14 karakter · yalnızca küçük harf, rakam, _ ve -</p>
+
+            <div class="form-row">
+              <label class="field">
+                <span class="field__label" data-i18n="auth.password">Şifre</span>
+                <input class="input" id="rSifre" name="sifre" type="password" autocomplete="new-password" placeholder="••••••" maxlength="16" />
+                <span class="field__err" id="eSifre"></span>
+              </label>
+              <label class="field">
+                <span class="field__label" data-i18n="auth.password2">Tekrar Şifre</span>
+                <input class="input" id="rSifre2" name="sifre2" type="password" autocomplete="new-password" placeholder="••••••" maxlength="16" />
+                <span class="field__err" id="eSifre2"></span>
+              </label>
+            </div>
+            <p class="field__hint" data-i18n="auth.passwordHint">6–16 karakter, en az bir harf içermeli.</p>
+
+            <div class="field">
+              <span class="field__label" data-i18n="auth.captcha">Güvenlik Doğrulaması</span>
+              <div class="captcha-row">
+                <div class="captcha-img" id="captchaImg" aria-label="Güvenlik kodu">----</div>
+                <button class="captcha-refresh" type="button" id="captchaNew" data-i18n-aria="auth.captchaNew" aria-label="Yeni kod oluştur">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-.6 3M20 5v6h-6" /></svg>
+                </button>
+                <input class="input" id="rCaptcha" type="text" data-i18n-ph="auth.captchaPh" placeholder="Kodu yazın" maxlength="4" autocomplete="off" spellcheck="false" style="text-transform:uppercase;letter-spacing:.18em;font-weight:600" />
+              </div>
+              <span class="field__err" id="eCaptcha"></span>
+            </div>
+
+            <label class="checkline">
+              <input type="checkbox" id="rSozlesme" />
+              <span>
+                <a href="kullanici-sozlesmesi.html" data-i18n="nav.terms">Kullanıcı Sözleşmesi</a>
+                <span data-i18n="auth.acceptAnd"> ve </span>
+                <a href="gizlilik-politikasi.html" data-i18n="nav.privacy">Gizlilik Politikası</a>
+                <span data-i18n="auth.accept1"> okudum, kabul ediyorum.</span>
+              </span>
+            </label>
+            <span class="field__err" id="eSozlesme"></span>
+
+            <div class="btn-row">
+              <button class="btn btn--ghost" type="button" id="backStep1" data-i18n="auth.back">Geri</button>
+              <button class="btn btn--primary" type="submit" id="regSubmit" data-i18n="auth.create">Hesabı Oluştur</button>
+            </div>
+            <p class="form-status" id="s2Status" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+
+        <p class="auth-alt">
+          <span data-i18n="auth.haveAccount">Zaten hesabın var mı?</span>
+          <a href="giris.html" data-i18n="auth.login">Giriş Yap</a>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/site-chrome.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/auth-lib.js"></script>
+  <script src="js/kayit.js"></script>
+</body>
+</html>
