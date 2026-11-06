@@ -63,7 +63,9 @@
       msg("Giriş başarılı. Panele yönlendiriliyorsunuz…", "is-ok");
       window.setTimeout(function () { window.location.href = "panel.html"; }, 600);
     }).catch(function (e) {
-      setCaptcha();
+      /* Güvenlik kodu yalnızca yanlış kod girildiğinde yenilenir;
+         e-posta doğrulama/şifre hatasında kullanıcı tekrar yazabilsin. */
+      if (e && e.code === "CAPTCHA") setCaptcha();
       if (submit) { submit.disabled = false; submit.textContent = "Giriş Yap"; }
       if (e.status === 400 && /confirm|verified|email/i.test(e.message)) {
         msg("E-posta adresinizi doğruladıktan sonra tekrar giriş yapın.", "is-error");
