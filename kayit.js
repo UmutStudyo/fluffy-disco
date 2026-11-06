@@ -112,8 +112,9 @@
         status(s2Status, "Hesabınız oluşturuldu. Giriş yapabilirsiniz.", "is-ok");
         window.setTimeout(function () { window.location.href = "giris.html"; }, 900);
       } else {
-        status(s2Status, "Kayıt başarılı. E-posta adresinizi doğrulayın, ardından giriş yapın.", "is-ok");
-        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = "Hesabı Oluştur"; }
+        status(s2Status, "Hesap oluşturuldu. E-posta adresinizi doğrulayın; giriş sayfasına yönlendiriliyorsunuz…", "is-ok");
+        if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = "Kayıt tamamlandı"; }
+        window.setTimeout(function () { window.location.href = "giris.html?registered=1"; }, 1400);
       }
     }).catch(function (err) {
       setCaptcha();
