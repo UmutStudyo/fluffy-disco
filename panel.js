@@ -101,6 +101,14 @@
   /* ---------- 1. Üyeyi yükle ve profilini çöz ---------- */
 
   function loadMe() {
+    if (usingSupabase) {
+      var u = supabaseSession.user || {};
+      var md = u.user_metadata || {};
+      me = { id: u.id, kullanici_adi: md.username || (u.email || "").split("@")[0], konu_sayisi: 0, yorum_sayisi: 0, mesaj_sayisi: 0, durum: "aktif", rol: md.role || "user" };
+      profile = { ad: md.ad || md.fullname || "", soyad: md.soyad || "", cinsiyet: md.cinsiyet || "", dogum_tarihi: md.dogum_tarihi || "", email: u.email || "" };
+      renderIdentity();
+      return Promise.resolve(me);
+    }
     return A.getRow("uyeler", session.id).then(function (row) {
       if (!row) throw new Error("Hesap bulunamadı");
       me = row;
